@@ -233,7 +233,7 @@ function main({
           default:
             break;
         }
-        query = `${queryName || description.toLowerCase()} ${type}${varsToTypesStr ? `(${varsToTypesStr})` : ''}{\n${query}\n}`;
+        query = `${queryName || description.toLowerCase()} ${type.charAt(0).toUpperCase()}${type.slice(1)}${varsToTypesStr ? `(${varsToTypesStr})` : ''}{\n${query}\n}`;
         fs.writeFileSync(path.join(writeFolder, `./${type}.${fileExtension}`), query);
         indexJs += `module.exports.${type} = fs.readFileSync(path.join(__dirname, '${type}.${fileExtension}'), 'utf8');\n`;
       }
